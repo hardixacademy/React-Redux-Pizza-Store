@@ -1,29 +1,35 @@
-import React, { useState, memo } from 'react';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
 // -------- для того чтобы небыло ререндера когда pizzas меняется
-const Categories = memo(function Categories({ activeCategory, categoryNames, onClickItem }) {
-	const onSelectItem = (index) => {
-		setActiveItem(index);
-		onClickItem(index);
-	};
-
+const Categories = memo(function Categories({ activeCategory, categoryNames, onClickCategory }) {
 	return (
 		<div className='categories'>
 			<ul>
-				<li className={activeCategory === null ? 'active' : ''} onClick={() => onSelectItem(null)}>
+				<li className={activeCategory === null ? 'active' : ''} onClick={() => onClickCategory(null)}>
 					Все
 				</li>
 
-				{categoryNames &&
-					categoryNames.map((item, index) => (
-						<li className={activeCategory === index ? 'active' : ''} onClick={() => onSelectItem(index)} key={`${item}_${index}`}>
-							{item}
-						</li>
-					))}
+				{categoryNames.map((item, index) => (
+					<li className={activeCategory === index ? 'active' : ''} onClick={() => onClickCategory(index)} key={`${item}_${index}`}>
+						{item}
+					</li>
+				))}
 			</ul>
 		</div>
 	);
 });
+
+Categories.propTypes = {
+	activeCategory: PropTypes.number,
+	categoryNames: PropTypes.arrayOf(PropTypes.string),
+	onClickCategory: PropTypes.func,
+};
+
+Categories.defaultProps = {
+	activeCategory: null,
+	categoryNames: [],
+};
 
 export default Categories;
 
