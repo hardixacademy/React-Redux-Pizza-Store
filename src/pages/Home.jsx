@@ -37,7 +37,7 @@ function Home() {
 	// --------
 
 	useEffect(() => {
-		dispatch(fetchPizzas());
+		dispatch(fetchPizzas(sortBy, category));
 	}, [category, sortBy]);
 
 	return (
@@ -51,7 +51,7 @@ function Home() {
 			<div className='content__items'>
 				{isLoaded
 					? items.map((obj) => <PizzaItem key={obj.id} {...obj} />)
-					: Array(11)
+					: Array(4)
 							.fill('')
 							.map((_, i) => <PizzaItemPlaceholder key={i} />)}
 			</div>

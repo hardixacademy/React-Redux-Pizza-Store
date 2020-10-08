@@ -3,7 +3,14 @@ import ContentLoader from 'react-content-loader';
 
 function PizzaItemPlaceholder() {
 	return (
-		<ContentLoader speed={3} width={280} height={460} viewBox='0 0 280 460' backgroundColor='#f2f2f2' foregroundColor='#e0e0e0'>
+		<ContentLoader
+			style={{ marginRight: '35px', marginBottom: '65px' }}
+			speed={3}
+			width={280}
+			height={460}
+			viewBox='0 0 280 460'
+			backgroundColor='#f2f2f2'
+			foregroundColor='#e0e0e0'>
 			<circle cx='140' cy='140' r='120' />
 			<rect x='0' y='275' rx='6' ry='5' width='280' height='25' />
 			<rect x='0' y='315' rx='6' ry='10' width='280' height='85' />

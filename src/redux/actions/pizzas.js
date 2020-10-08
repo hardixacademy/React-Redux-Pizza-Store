@@ -10,15 +10,22 @@ export const setLoaded = (payload) => ({
 	payload,
 });
 
-export const fetchPizzas = () => (dispatch) => {
+export const fetchPizzas = (sortBy, category) => (dispatch) => {
 	dispatch(setLoaded(false));
 
-	axios
-		.get('http://localhost:3001/pizzas')
-		.then(({ data }) => {
-			dispatch(setPizzas(data));
-		})
-		.catch((e) => console.log(e));
+	category !== null
+		? axios
+				.get(`http://localhost:3001/pizzas?category=${category}&`)
+				.then(({ data }) => {
+					dispatch(setPizzas(data));
+				})
+				.catch((e) => console.log(e))
+		: axios
+				.get(`http://localhost:3001/pizzas`)
+				.then(({ data }) => {
+					dispatch(setPizzas(data));
+				})
+				.catch((e) => console.log(e));
 };
 
 // export const fetchPizzas = (dispatch) => {
