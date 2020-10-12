@@ -13,15 +13,23 @@ export const setLoaded = (payload) => ({
 export const fetchPizzas = (sortBy, category) => (dispatch) => {
 	dispatch(setLoaded(false));
 
+	let sort = sortBy;
+
+	if (sortBy === 'popular') {
+		sort = 'rating';
+	} else if (sortBy === 'alphabet') {
+		sort = 'name';
+	}
+
 	category !== null
 		? axios
-				.get(`http://localhost:3001/pizzas?category=${category}&`)
+				.get(`/pizzas?category=${category}&_sort=${sort}&_order=desc`)
 				.then(({ data }) => {
 					dispatch(setPizzas(data));
 				})
 				.catch((e) => console.log(e))
 		: axios
-				.get(`http://localhost:3001/pizzas`)
+				.get(`/pizzas?_sort=${sort}&_order=desc`)
 				.then(({ data }) => {
 					dispatch(setPizzas(data));
 				})

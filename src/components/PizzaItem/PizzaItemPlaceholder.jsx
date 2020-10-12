@@ -4,7 +4,7 @@ import ContentLoader from 'react-content-loader';
 function PizzaItemPlaceholder() {
 	return (
 		<ContentLoader
-			style={{ marginRight: '35px', marginBottom: '65px' }}
+			className='pizza-block'
 			speed={3}
 			width={280}
 			height={460}
